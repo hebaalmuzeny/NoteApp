@@ -11,9 +11,20 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseReference;
+
+
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Signup extends AppCompatActivity {
 
@@ -26,39 +37,43 @@ public class Signup extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mFirebaseAuth.getCurrentUser();
+
+        if (user!=null)
+        {
+            Intent myintent = new Intent(Signup.this , Home.class);
+            startActivity(myintent);
+        }
+
+
         emailId = findViewById(R.id.email);
         password = findViewById(R.id.pass);
         signUp = findViewById(R.id.signup);
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email1 = emailId.getText().toString();
-                String psw = password.getText().toString();
-                if (email1.isEmpty()) {
-                    emailId.setError("please enter email ");
-                    emailId.requestFocus();
-                } else if (psw.isEmpty()) {
-                    password.setError("please enter password");
-                    password.requestFocus();
-                } else if (!(email1.isEmpty() && psw.isEmpty())) {
-                    mFirebaseAuth.createUserWithEmailAndPassword(email1, psw).addOnCompleteListener
-                            (Signup.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (!task.isSuccessful()) {
-                                        Toast.makeText(Signup.this, "Created account is not succeful, try again", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        startActivity(new Intent(Signup.this, Home.class));
-                                    }
-                                }
-                            });
-                } else {
-                    Toast.makeText(Signup.this, "Created account is not succeful, try again", Toast.LENGTH_SHORT).show();
-                }
-
-            }
+        //signUp.setOnClickListener(new View.OnClickListener(v-> {
+         //   doSignup(emailId.getText().toString() , password.getText().toString());
         });
-}
+        private void doSignup(String emailId, String password){
+            mFirebaseAuth.createUserWithEmailAndPassword(emailId,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                        String emailF = user.getEmail();
+                        String uid = user.getUid();
+                        Map<String, Object> data = new HashMap<>();
+                        data.put("uid", uid);
+                        data.put("email", emailF);
+                        data.put("createdAt", new Date().getTime());
+
+                        // FirebaseDatabase.getInstance().getReference().child("User").child(uid).setValue(data).addOnFailureListener(new OnFailureListener() {
+
+                        //  })
+
+
+                    }
+                }
+            }
+        }
 
     public void btn_back(View view) {
         Intent intent1 = new Intent(Signup.this, MainActivity.class);

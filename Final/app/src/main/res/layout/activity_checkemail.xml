@@ -4,6 +4,70 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Checkemail">
+        tools:context=".Checkemail"
+        android:background="#ffffff">
+
+    <LinearLayout
+            android:id="@+id/liinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            >
+        <ImageButton
+                android:id="@+id/close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/close"
+                android:background="#ffffff"
+                android:padding="16dp"
+                android:onClick="btn_close"/>
+
+        <ImageView
+                android:layout_width="264dp"
+                android:layout_height="364dp"
+                android:src="@drawable/photonote" />
+
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/lineear"
+            app:layout_constraintTop_toBottomOf="@id/liinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Check your email"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:gravity="center"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We’ve sent the instructions on how to reset\n The password (Also check the spam folder)"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:padding="20dp"
+                android:textStyle="normal"
+
+    </LinearLayout>
+    <LinearLayout
+            app:layout_constraintTop_toBottomOf="@id/lineear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:layout_marginTop="35dp"
+        >
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Go to email"
+                android:background="@drawable/radius"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
