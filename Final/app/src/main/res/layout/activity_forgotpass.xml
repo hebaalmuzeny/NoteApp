@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter your Email address"
-                android:paddingStart=""/>
+                android:paddingStart="20dp"/>
     </LinearLayout>
     <LinearLayout
             app:layout_constraintTop_toBottomOf="@id/linear2"
@@ -82,15 +82,8 @@
                 android:layout_height="wrap_content"
                 android:text="Recover password"
                 android:textColor="#ffffff"
-                android:background="@drawable/radius"
+                android:background="@drawable/radius"/>
 
     </LinearLayout>
-
-
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
