@@ -6,16 +6,66 @@
         android:layout_height="match_parent"
         tools:context=".Home">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Home Page"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textSize="20dp"/>
+    <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/linearLayout"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            >
+        <ImageView
+                android:id="@+id/imgView1"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="12dp"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/ic_group"></ImageView>
+
+        <TextView
+                android:id="@+id/textV1"
+                android:layout_width="191dp"
+                android:layout_height="46dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_below="@+id/imgView1"
+                android:text="Notebook"
+                android:textColor="#000000"
+                android:textSize="34sp"></TextView>
+
+        <EditText
+                android:id="@+id/editT1"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="12dp"
+                android:background="#E4E4E5"
+                android:paddingLeft="16dp"
+                android:text="Search"
+                android:textColor="#8E8E93"
+                android:layout_below="@+id/textV1"></EditText>
+
+        <ImageView
+                android:id="@+id/imgView2"
+                android:layout_width="109dp"
+                android:layout_height="120dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/editT1"
+                android:src="@drawable/note"></ImageView>
+
+        <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgView2"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="-1dp"
+                android:text="My Links"
+                android:textColor="#4A4A4A"> </TextView>
+
+
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

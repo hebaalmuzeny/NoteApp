@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,8 +34,8 @@ public class Signup extends AppCompatActivity {
     EditText emailId, password;
     Button signUp;
     FirebaseAuth mFirebaseAuth;
-
-    public void Oncreate(Bundle savedInstanceState){
+    @Override
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -56,6 +57,7 @@ public class Signup extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Enter Password!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 if (password.length() < 6) {
                     Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
                     return;
@@ -63,9 +65,9 @@ public class Signup extends AppCompatActivity {
                 mFirebaseAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(Signup.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(Signup.this, "created account is onComplete" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
                         if(!task.isSuccessful()){
                             Toast.makeText(Signup.this,"Authentication Falied" +task.getException(), Toast.LENGTH_SHORT).show();
+                            Log.d("SignUpError", task.getException().getMessage());
                         }else{
                             startActivity(new Intent(Signup.this, Home.class));
                             finish();
